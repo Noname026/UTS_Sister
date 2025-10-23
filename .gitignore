@@ -1,0 +1,13 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+
+# Database (produksi dan tes)
+data/
+test_data/
+aggregator.db
+
+# VS Code settings
+.vscode/

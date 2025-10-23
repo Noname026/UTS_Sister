@@ -1,0 +1,37 @@
+# Versi Docker Compose
+version: "3.8"
+
+# Di sinilah kita mendefinisikan semua service kita
+services:
+
+  # Service pertama: Server API kita
+  aggregator:
+    # Perintahkan Compose untuk build dari Dockerfile di folder ini (.)
+    build: .
+    container_name: aggregator-service
+    ports:
+      # Tetap ekspos port 8080 ke komputer kita agar bisa diakses dari browser
+      - "8080:8080"
+    volumes:
+      # Gunakan volume persisten yang sama
+      - aggregator-data:/app/data
+    # (CMD dari Dockerfile akan otomatis digunakan: uvicorn)
+
+  # Service kedua: Publisher bonus kita
+  publisher:
+    # Gunakan image yang SAMA dengan aggregator (sudah ada httpx)
+    build: .
+    container_name: publisher-service
+
+    # PENTING: Perintahkan service ini untuk menunggu
+    # service 'aggregator' "siap" (secara network) sebelum mulai
+    depends_on:
+      - aggregator
+
+    # PENTING: Ganti perintah default (CMD)
+    # Daripada menjalankan uvicorn, kita jalankan skrip publisher baru
+    command: ["python", "publisher_bonus.py"]
+
+# Definisikan volume 'aggregator-data' agar persisten
+volumes:
+  aggregator-data:
