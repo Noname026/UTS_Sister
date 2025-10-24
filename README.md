@@ -8,7 +8,7 @@ Ini adalah implementasi untuk Ujian Tengah Semester Sistem Terdistribusi, yang b
 
 Proyek ini dibangun menggunakan Python (FastAPI), SQLite untuk penyimpanan persisten, dan di-container-isasi penuh menggunakan Docker dan Docker Compose.
 
-**Link Video Demo YouTube:** [LINK_VIDEO_YOUTUBE_ANDA_DI_SINI]
+**Link Video Demo YouTube:** [(https://youtu.be/vz2wsTjlIH8)]
 
 ---
 
